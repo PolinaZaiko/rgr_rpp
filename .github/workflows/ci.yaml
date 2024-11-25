@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Bandit for security checks
+        run: bandit -r . 
+
+      - name: Generate OpenAPI documentation
+        run: |
+          python generate_openapi.py
+        
+      - name: Install Node.js for ReDocly
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+        
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli@latest
+        
+      - name: Build documentation with Redocly
+        run: redocly build-docs docs/openapi.yaml
+        
+      - name: Publish documentation to GitHub Pages
+        run: |
+          mkdir -p docs/.vuepress/dist && cp -r docs/* docs/.vuepress/dist/
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add docs/.vuepress/dist/
+          git commit -m 'Update documentation'
+          git push origin gh-pages --force || echo "No changes to commit"

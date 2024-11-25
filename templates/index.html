@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+</head>
+<body>
+    <h1>Список контактов</h1>
+    <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                <a href="{{ url_for('get_contact', id=contact.id) }}">{{ contact.name }}</a> - {{ contact.phone }}
+                <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline;">
+                    <button type="submit">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
