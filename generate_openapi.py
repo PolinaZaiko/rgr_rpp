@@ -3,6 +3,9 @@ from app import app  # Импортируйте объект Flask из ваше
 
 
 def generate_openapi_yaml():
+    """Генерирует спецификацию OpenAPI и сохраняет её в файл."""
+
+    
     with app.test_client() as client:
         response = client.get('/apispec_1.json')
         if response.status_code == 200 and response.is_json:
