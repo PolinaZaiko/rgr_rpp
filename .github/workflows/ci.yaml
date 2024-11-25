@@ -22,6 +22,12 @@ jobs:
         run: |
           pip install flake8 pytest pytest-cov bandit
 
+      - name: Lint code # Шаг для проверки кода на соответствие стилю
+        run: flake8 .
+
+      - name: Check security # Шаг для проверки безопасности кода
+        run: bandit -r .
+
       - name: Generate OpenAPI documentation
         run: |
           python generate_openapi.py
@@ -35,12 +41,12 @@ jobs:
         run: npm install -g @redocly/cli@latest
         
       - name: Build documentation with Redocly
-        run: redocly build-docs openapi.yaml # Убедитесь, что файл openapi.yaml создан
+        run: redocly build-docs openapi.yaml 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs # Убедитесь, что здесь правильный путь к сгенерированным файлам документации
+          publish_dir: ./docs 
           publish_branch: gh-pages
           keep_files: true
