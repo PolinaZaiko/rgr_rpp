@@ -22,15 +22,14 @@ jobs:
         run: |
           pip install flake8 pytest pytest-cov bandit
 
-      - name: Lint code # Шаг для проверки кода на соответствие стилю
+      - name: Lint code
         run: flake8 .
 
-      - name: Check security # Шаг для проверки безопасности кода
+      - name: Check security
         run: bandit -r .
 
       - name: Generate OpenAPI documentation
-        run: |
-          python generate_openapi.py
+        run: python generate_openapi.py
         
       - name: Install Node.js
         uses: actions/setup-node@v4
