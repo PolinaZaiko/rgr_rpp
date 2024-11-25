@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Список контактов для управления вашими контактами.">
+    <meta name="keywords" content="контакты, телефон, управление контактами">
     <title>Контакты</title>
 </head>
 <body>
-    <h1>Список контактов</h1>
-    <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
-    <ul>
-        {% for contact in contacts %}
-            <li>
-                <a href="{{ url_for('get_contact', id=contact.id) }}">{{ contact.name }}</a> - {{ contact.phone }}
-                <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline;">
-                    <button type="submit">Удалить</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Список контактов</h1>
+        <nav>
+            <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    <a href="{{ url_for('get_contact', id=contact.id) }}">{{ contact.name }}</a> - {{ contact.phone }}
+                    <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline;">
+                        <button type="submit" aria-label="Удалить контакт {{ contact.name }}">Удалить</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
 </body>
 </html>

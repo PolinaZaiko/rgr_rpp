@@ -8,10 +8,12 @@ swagger = Swagger(app)
 contacts = {}
 contact_id_counter = 1
 
+
 @app.route('/')
 def index():
     """Главная страница с отображением всех контактов"""
     return render_template('index.html', contacts=contacts.values())
+
 
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
@@ -29,6 +31,7 @@ def create_contact():
         return redirect(url_for('index'))
     return render_template('create_contact.html')
 
+
 @app.route('/contacts/<int:id>', methods=['GET'])
 def get_contact(id):
     """Получение информации о контакте по его идентификатору"""
@@ -37,14 +40,16 @@ def get_contact(id):
         return jsonify({"message": "Contact not found"}), 404
     return render_template('contact.html', contact=contact)
 
+
 @app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
     """Удаление контакта по его идентификатору"""
     if id not in contacts:
         return jsonify({"message": "Contact not found"}), 404
-    
+
     del contacts[id]
     return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
