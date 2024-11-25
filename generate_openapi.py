@@ -1,6 +1,7 @@
 import yaml
 from app import app  # Импортируйте объект Flask из вашего приложения
 
+
 def generate_openapi_yaml():
     with app.test_client() as client:
         response = client.get('/apispec_1.json')
@@ -11,6 +12,7 @@ def generate_openapi_yaml():
             print("Спецификация OpenAPI сохранена в docs/openapi.yaml")
         else:
             print("Ошибка: не удалось получить спецификацию OpenAPI.")
+
 
 if __name__ == "__main__":
     generate_openapi_yaml()

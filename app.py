@@ -29,6 +29,7 @@ def create_contact():
         }
         contact_id_counter += 1
         return redirect(url_for('index'))
+    
     return render_template('create_contact.html')
 
 
@@ -38,6 +39,7 @@ def get_contact(id):
     contact = contacts.get(id)
     if not contact:
         return jsonify({"message": "Contact not found"}), 404
+    
     return render_template('contact.html', contact=contact)
 
 
