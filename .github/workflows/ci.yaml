@@ -53,3 +53,4 @@ jobs:
           publish_dir: ./docs # Убедитесь, что здесь правильный путь к сгенерированным файлам документации
           publish_branch: gh-pages
           keep_files: true
+          
