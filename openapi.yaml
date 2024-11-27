@@ -10,11 +10,13 @@ paths:
       parameters:
       - description: "\u0418\u043C\u044F \u043A\u043E\u043D\u0442\u0430\u043A\u0442\
           \u0430."
+        in: formData
         name: name
         required: true
         type: string
       - description: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\
           \u043E\u043D\u0430."
+        in: formData
         name: phone
         required: true
         type: string
@@ -31,11 +33,13 @@ paths:
       parameters:
       - description: "\u0418\u043C\u044F \u043A\u043E\u043D\u0442\u0430\u043A\u0442\
           \u0430."
+        in: formData
         name: name
         required: true
         type: string
       - description: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\
           \u043E\u043D\u0430."
+        in: formData
         name: phone
         required: true
         type: string
@@ -53,6 +57,7 @@ paths:
       parameters:
       - description: "\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\
           \u0442\u043E\u0440 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430."
+        in: path
         name: id
         required: true
         type: integer
@@ -71,6 +76,7 @@ paths:
       parameters:
       - description: "\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\
           \u0442\u043E\u0440 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430."
+        in: path
         name: id
         required: true
         type: integer
