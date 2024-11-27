@@ -44,7 +44,7 @@ jobs:
         run: npm i -g @redocly/cli@latest
         
       - name: Build documentation with Redocly
-        run: redocly build-docs docs/openapi.yaml 
+        run: redocly build-docs docs/openapi.yaml
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
