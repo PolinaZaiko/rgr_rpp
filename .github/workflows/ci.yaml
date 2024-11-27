@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install flasgger pyyaml
+          pip install requirements.txt
 
       # - name: Lint code
       #   run: flake8 .
