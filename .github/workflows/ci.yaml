@@ -45,28 +45,18 @@ jobs:
         
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml
-
-      - name: Add files to git
-        run: |
-          git config --global user.name "PolinaZaiko"
-          git config --global user.email "zpolina2003@mail.ru"
-          git add ./docs/*
-          git commit -m "Update documentation" || echo "No changes to commit"
-   
-      - name: Check generated files
-        run: ls -la ./docs
-      
+        
       - name: List working directory
         run: pwd
 
       - name: Configure Git
         run: |
           git config --global user.name "PolinaZaiko"
-          git config --global user.email "zpolina2003@mail.ru"
+          git config --global user.email "your_email@example.com"  # Замените на свой email
 
       - name: Add files to git
         run: |
-          git add docs/*
+          git add .  # Добавляем все изменения
           git commit -m "Update documentation" || echo "No changes to commit"
 
       - name: Deploy to GitHub Pages
