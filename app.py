@@ -14,24 +14,6 @@ def index():
 
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
-    """
-    Создание нового контакта.
-    ---
-    parameters:
-      - name: name
-        type: string
-        required: true
-        description: Имя контакта.
-        in: formData
-      - name: phone
-        type: string
-        required: true
-        description: Номер телефона.
-        in: formData
-    responses:
-      302:
-        description: Контакт успешно создан и перенаправление на главную страницу.
-    """
     global contact_id_counter
     if request.method == 'POST':
         data = request.form
@@ -47,22 +29,15 @@ def create_contact():
     return render_template('create_contact.html')
 
 @app.route('/contacts/<int:id>', methods=['GET'])
+@swag_from({
+    'responses': {
+        200: {
+            'description': 'Список контактов',
+            'schema': ContactSchema  # Убедитесь, что у вас есть определение схемы
+        }
+    }
+})
 def get_contact(id):
-    """
-    Получение информации о контакте по его идентификатору.
-    ---
-    parameters:
-      - name: id
-        type: integer
-        required: true
-        description: Идентификатор контакта.
-        in: path
-    responses:
-      200:
-        description: Информация о контакте.
-      404:
-        description: Контакт не найден.
-    """
     contact = contacts.get(id)
     if not contact:
         return jsonify({"message": "Contact not found"}), 404
@@ -71,21 +46,6 @@ def get_contact(id):
 
 @app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
-    """
-    Удаление контакта по его идентификатору.
-    ---
-    parameters:
-      - name: id
-        type: integer
-        required: true
-        description: Идентификатор контакта.
-        in: path
-    responses:
-      302:
-        description: Успешное удаление контакта и перенаправление на главную страницу.
-      404:
-        description: Контакт не найден.
-    """
     if id not in contacts:
         return jsonify({"message": "Contact not found"}), 404
 
