@@ -48,7 +48,10 @@ jobs:
 
       - name: Check generated files
         run: ls -la ./docs
-
+      
+      - name: List working directory
+        run: pwd
+   
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

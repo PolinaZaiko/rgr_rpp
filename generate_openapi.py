@@ -13,13 +13,10 @@ def generate_openapi_yaml():
             # Создаем директорию docs, если она не существует
             os.makedirs("docs", exist_ok=True)
 
-            # Путь к файлу
-            file_path = os.path.join("docs", "openapi.yaml")
-
-            with open(file_path, "w") as file:
+            with open("docs/openapi.yaml", "w") as file:
                 yaml.dump(openapi_spec, file, default_flow_style=False)
             
-            print("Спецификация OpenAPI сохранена в", file_path)
+            print("Спецификация OpenAPI сохранена в docs/openapi.yaml")
             print("Содержимое директории docs:", os.listdir("docs"))  # Выводим содержимое директории
         else:
             print("Ошибка: не удалось получить спецификацию OpenAPI.")
