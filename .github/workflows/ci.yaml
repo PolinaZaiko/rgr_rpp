@@ -34,7 +34,13 @@ jobs:
 
       - name: Generate OpenAPI documentation
         run: python generate_openapi.py
-        
+      
+      - name: List files after generating documentation
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in the project:"
+          ls -R .
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -45,11 +51,6 @@ jobs:
         
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml
-
-      - name: Prepare files for deployment
-        run: |
-          mkdir -p ./docs  # Создаем директорию, если её нет
-          cp docs/openapi.yaml ./docs/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
