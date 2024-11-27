@@ -34,12 +34,6 @@ jobs:
 
       - name: Generate OpenAPI documentation
         run: python generate_openapi.py
-      
-      - name: List files after generating documentation
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in the project:"
-          ls -R .
 
       - name: Install Node.js
         uses: actions/setup-node@v4
