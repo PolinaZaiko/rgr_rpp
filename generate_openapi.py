@@ -19,7 +19,7 @@ def generate_openapi_yaml():
             with open(openapi_file_path, "w") as file:
                 yaml.dump(openapi_spec, file, default_flow_style=False)
             
-            print("Спецификация OpenAPI сохранена в {openapi_file_path}")
+            print(f"Спецификация OpenAPI сохранена в {openapi_file_path}")
         else:
             print("Ошибка: не удалось получить спецификацию OpenAPI.")
             print(response.status_code, response.data)

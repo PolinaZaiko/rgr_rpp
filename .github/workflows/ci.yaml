@@ -46,6 +46,11 @@ jobs:
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml
 
+      - name: Prepare files for deployment
+        run: |
+          mkdir -p ./docs  # Создаем директорию, если её нет
+          cp docs/openapi.yaml ./docs/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
