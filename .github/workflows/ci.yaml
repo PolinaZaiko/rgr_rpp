@@ -46,23 +46,10 @@ jobs:
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml
         
-      - name: List working directory
-        run: pwd
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "PolinaZaiko"
-          git config --global user.email "your_email@example.com"  # Замените на свой email
-
-      - name: Add files to git
-        run: |
-          git add .  # Добавляем все изменения
-          git commit -m "Update documentation" || echo "No changes to commit"
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: gh-pages
+          publish_dir: ./docs  
+          publish_branch: gh-pages  
           keep_files: true

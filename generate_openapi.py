@@ -17,7 +17,6 @@ def generate_openapi_yaml():
                 yaml.dump(openapi_spec, file, default_flow_style=False)
             
             print("Спецификация OpenAPI сохранена в docs/openapi.yaml")
-            print("Содержимое директории docs:", os.listdir("docs"))  # Выводим содержимое директории
         else:
             print("Ошибка: не удалось получить спецификацию OpenAPI.")
             print(response.status_code, response.data)
