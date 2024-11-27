@@ -22,10 +22,12 @@ def create_contact():
         type: string
         required: true
         description: Имя контакта.
+        in: formData
       - name: phone
         type: string
         required: true
         description: Номер телефона.
+        in: formData
     responses:
       302:
         description: Контакт успешно создан и перенаправление на главную страницу.
@@ -54,6 +56,7 @@ def get_contact(id):
         type: integer
         required: true
         description: Идентификатор контакта.
+        in: path
     responses:
       200:
         description: Информация о контакте.
@@ -76,6 +79,7 @@ def delete_contact(id):
         type: integer
         required: true
         description: Идентификатор контакта.
+        in: path
     responses:
       302:
         description: Успешное удаление контакта и перенаправление на главную страницу.
