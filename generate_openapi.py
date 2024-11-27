@@ -1,9 +1,13 @@
 import yaml
+import os
 
 from app import app
 
 
 def generate_openapi_yaml():
+    if not os.path.exists('docs'):
+        os.makedirs('docs')  # Создать директорию если она не существует
+
     with app.test_client() as client:
         response = client.get('/apispec_1.json')
         
