@@ -47,8 +47,7 @@ jobs:
         run: redocly build-docs docs/openapi.yaml
 
       - name: Check generated files
-        run: |
-          ls -la ./docs
+        run: ls -la ./docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
