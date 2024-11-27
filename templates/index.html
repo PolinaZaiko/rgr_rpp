@@ -6,6 +6,61 @@
     <meta name="description" content="Список контактов для управления вашими контактами.">
     <meta name="keywords" content="контакты, телефон, управление контактами">
     <title>Контакты</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            width: 50%;
+            margin: auto;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            margin-top: 20px;
+        }
+        ul {
+            width: 50%;
+            list-style-type: none;
+            padding: 0;
+            margin: auto;
+
+        }
+        li {
+            background-color: white;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,7 +73,7 @@
         <ul>
             {% for contact in contacts %}
                 <li>
-                    <a href="{{ url_for('get_contact', id=contact.id) }}">{{ contact.name }}</a> - {{ contact.phone }}
+                    <span>{{ contact.name }}</span> - <span>{{ contact.phone }}</span>
                     <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline;">
                         <button type="submit" aria-label="Удалить контакт {{ contact.name }}">Удалить</button>
                     </form>
@@ -28,3 +83,4 @@
     </main>
 </body>
 </html>
+

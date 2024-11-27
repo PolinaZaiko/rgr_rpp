@@ -7,11 +7,9 @@ swagger = Swagger(app)
 contacts = {}
 contact_id_counter = 1
 
-
 @app.route('/')
 def index():
     return render_template('index.html', contacts=contacts.values())
-
 
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
@@ -29,7 +27,6 @@ def create_contact():
 
     return render_template('create_contact.html')
 
-
 @app.route('/contacts/<int:id>', methods=['GET'])
 def get_contact(id):
     contact = contacts.get(id)
@@ -38,7 +35,6 @@ def get_contact(id):
 
     return render_template('contact.html', contact=contact)
 
-
 @app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
     if id not in contacts:
@@ -46,7 +42,6 @@ def delete_contact(id):
 
     del contacts[id]
     return redirect(url_for('index'))
-
 
 if __name__ == '__main__':
     app.run(debug=False)

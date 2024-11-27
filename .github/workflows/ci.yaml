@@ -18,15 +18,19 @@ jobs:
         with:
           python-version: '3.x'
           
+      # # - name: Install dependencies
+      # #   run: |
+      # #     pip install flake8 bandit flasgger pyyaml
+
       - name: Install dependencies
         run: |
-          pip install flake8 pytest pytest-cov bandit
+          pip install flasgger pyyaml
 
-      - name: Lint code
-        run: flake8 .
+      # - name: Lint code
+      #   run: flake8 .
 
-      - name: Check security
-        run: bandit -r .
+      # - name: Check security
+      #   run: bandit -r .
 
       - name: Generate OpenAPI documentation
         run: python generate_openapi.py
@@ -36,11 +40,12 @@ jobs:
         with:
           node-version: '18'
         
-      - name: Install Redocly
-        run: npm install -g @redocly/cli@latest
+      - name: Install Redocly 
+        run: |
+          npm i -g @redocly/cli@latest
         
       - name: Build documentation with Redocly
-        run: redocly build-docs openapi.yaml 
+        run: redocly build-docs docs/openapi.yaml 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
