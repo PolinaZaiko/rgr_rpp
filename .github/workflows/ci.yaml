@@ -41,8 +41,7 @@ jobs:
           node-version: '18'
         
       - name: Install Redocly 
-        run: |
-          npm i -g @redocly/cli@latest
+        run: npm i -g @redocly/cli@latest
         
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml 
@@ -53,3 +52,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs 
           publish_branch: gh-pages
+          keep_files: true
