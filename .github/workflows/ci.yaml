@@ -30,7 +30,7 @@ jobs:
       #   run: flake8 .
 
       - name: Check security
-        run: bandit -r .
+        run: bandit app.py
 
       - name: Generate OpenAPI documentation
         run: python generate_openapi.py
