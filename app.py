@@ -15,7 +15,7 @@ def index():
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
     """
-    Создание нового контакта.
+    Создание нового контакта!
     ---
     parameters:
       - name: name
