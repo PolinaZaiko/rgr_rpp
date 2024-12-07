@@ -69,6 +69,7 @@ def get_contact(id):
 
     return render_template('contact.html', contact=contact)
 
+
 @app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
     """
@@ -92,5 +93,3 @@ def delete_contact(id):
     del contacts[id]
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
-    app.run(debug=False)

@@ -17,20 +17,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-          
-      # # - name: Install dependencies
-      # #   run: |
-      # #     pip install flake8 bandit flasgger pyyaml
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install bandit flasgger pyyaml
 
-      # - name: Lint code
-      #   run: flake8 .
-
-      # - name: Check security
-      #   run: bandit -r .
+      - name: Check security
+        run: bandit app.py
 
       - name: Generate OpenAPI documentation
         run: python generate_openapi.py
@@ -44,7 +37,7 @@ jobs:
         run: npm i -g @redocly/cli@latest
         
       - name: Build documentation with Redocly
-        run: redocly build-docs docs/openapi.yaml --output docs/redoc-static.html
+        run: redocly build-docs docs/openapi.yaml --output docs/index.html
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -53,3 +46,4 @@ jobs:
           publish_dir: ./docs  
           publish_branch: gh-pages  
           keep_files: true
+
