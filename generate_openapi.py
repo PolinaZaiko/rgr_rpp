@@ -26,4 +26,4 @@ def generate_openapi_yaml():
 
 if __name__ == "__main__":
     generate_openapi_yaml()
-    print("Содержимое директории docs после генерации:", os.listdir("docs"))
+    print("Содержимое директории docs после генерации (тест):", os.listdir("docs"))
