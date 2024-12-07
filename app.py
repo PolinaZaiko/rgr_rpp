@@ -91,6 +91,3 @@ def delete_contact(id):
 
     del contacts[id]
     return redirect(url_for('index'))
-
-if __name__ == '__main__':
-    app.run(debug=False)
