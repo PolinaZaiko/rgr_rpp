@@ -65,7 +65,7 @@ def get_contact(id):
     """
     contact = contacts.get(id)
     if not contact:
-        return jsonify({"message": "Contact not found"}), 404
+        return jsonify({"message": "Контакт не найден"}), 404
 
     return render_template('contact.html', contact=contact)
 
