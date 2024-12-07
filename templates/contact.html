@@ -68,7 +68,8 @@
         <p><strong>ID:</strong> {{ contact.id }}</p>
         <p><strong>Имя:</strong> {{ contact.name }}</p>
         <p><strong>Телефон:</strong> {{ contact.phone }}</p>
-        <form action="{{ url_for('delete_contact', id=contact.id) }}" method="DELETE" style="display:inline; margin-top: 20px;" onsubmit="return confirm('Вы уверены, что хотите удалить этот контакт?');">
+        <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline" onsubmit="return confirm('Вы уверены, что хотите удалить этот контакт?');">
+            <input type="hidden" name="_method" value="DELETE">
             <button type="submit" aria-label="Удалить контакт {{ contact.name }}">Удалить</button>
         </form>
         <a href="{{ url_for('index') }}" style="margin-left:20px;">Назад к списку контактов</a>    

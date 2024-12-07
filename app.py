@@ -69,7 +69,7 @@ def get_contact(id):
 
     return render_template('contact.html', contact=contact)
 
-@app.route('/contacts/<int:id>', methods=['DELETE'])
+@app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
     """
     Удаление контакта по его идентификатору.
@@ -86,8 +86,13 @@ def delete_contact(id):
       404:
         description: Контакт не найден.
     """
-    if id not in contacts:
-        return jsonify({"message": "Contact not found"}), 404
+    if request.form.get('_method') == 'DELETE':
+      if id not in contacts:
+          return jsonify({"message": "Contact not found"}), 404
 
     del contacts[id]
     return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run()
+
