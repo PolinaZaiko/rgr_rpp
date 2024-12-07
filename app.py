@@ -15,7 +15,7 @@ def index():
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
     """
-    Создание нового контакта.
+    Создание нового контакта!
     ---
     parameters:
       - name: name
@@ -69,7 +69,6 @@ def get_contact(id):
 
     return render_template('contact.html', contact=contact)
 
-
 @app.route('/contacts/<int:id>', methods=['POST'])
 def delete_contact(id):
     """
@@ -92,4 +91,3 @@ def delete_contact(id):
 
     del contacts[id]
     return redirect(url_for('index'))
-
