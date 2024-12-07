@@ -88,7 +88,7 @@ def delete_contact(id):
     """
     if request.form.get('_method') == 'DELETE':
       if id not in contacts:
-          return jsonify({"message": "Contact not found"}), 404
+          return jsonify({"message": "Контакт не найден"}), 404
 
     del contacts[id]
     return redirect(url_for('index'))
