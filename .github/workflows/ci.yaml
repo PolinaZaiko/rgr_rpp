@@ -1,49 +1,49 @@
-name: CI
+name: CI  # Устанавливаем имя для рабочего процесса CI 
 
 on:
-  push:
+  push:  # Указываем, что процесс запускается при каждом пуше
     branches:
-      - main
+      - main  # Указываем, что это касается только ветки main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Set up Python
-        uses: actions/setup-python@v2
+  build:  # Определяем задачу с именем "build"
+    runs-on: ubuntu-latest  # Задача будет выполняться на последней версии Ubuntu
+
+    steps:  # Определяем шаги, которые будут выполнены в рамках этой задачи
+      - name: Checkout code  # Шаг для извлечения кода из репозитория
+        uses: actions/checkout@v2  # Используем стандартное действие для получения кода
+
+      - name: Set up Python  # Шаг для настройки окружения Python
+        uses: actions/setup-python@v2  # Используем действие для установки Python
         with:
-          python-version: '3.x'
+          python-version: '3.x'  # Указываем версию Python (в данном случае последнюю из 3.x)
 
-      - name: Install dependencies
-        run: |
-          pip install bandit flasgger pyyaml
+      - name: Install dependencies  # Шаг для установки необходимых зависимостей
+        run: |  # Начинаем выполнять команды в оболочке
+          pip install bandit flasgger pyyaml  
 
-      - name: Check security
-        run: bandit app.py
+      - name: Check security  # Шаг для проверки безопасности кода
+        run: bandit app.py  # Запускаем bandit для анализа файла app.py на наличие уязвимостей
 
-      - name: Generate OpenAPI documentation
-        run: python generate_openapi.py
+      - name: Generate OpenAPI documentation  # Шаг для генерации документации OpenAPI
+        run: python generate_openapi.py  # Выполняем скрипт для генерации документации
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - name: Install Node.js  # Шаг для установки Node.js
+        uses: actions/setup-node@v4  # Используем действие для установки Node.js
         with:
-          node-version: '18'
-        
-      - name: Install Redocly 
-        run: |
-          npm install -g @redocly/cli
-        
-      - name: Build documentation with Redocly
-        run: redocly build-docs docs/openapi.yaml --output docs/index.html
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+          node-version: '18'  # Указываем версию Node.js (в данном случае 18)
+
+      - name: Install Redocly  # Шаг для установки инструмента Redocly
+        run: |  # Начинаем выполнять команды в оболочке
+          npm i -g @redocly/cli@latest
+
+      - name: Build documentation with Redocly  # Шаг для сборки документации с помощью Redocly
+        run: redocly build-docs docs/openapi.yaml --output docs/index.html  # Собираем документацию из openapi.yaml и сохраняем в index.html
+
+      - name: Deploy to GitHub Pages  # Шаг для развертывания документации на GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4  # Используем действие для публикации на GitHub Pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs  
-          publish_branch: gh-pages  
-          keep_files: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Используем токен доступа к репозиторию из секретов
+          publish_dir: ./docs  # Указываем директорию, которую нужно опубликовать
+          publish_branch: gh-pages  # Указываем ветку, куда будет опубликован контент (gh-pages)
+          keep_files: false  # Указываем, что не нужно сохранять старые файлы в ветке gh-pages

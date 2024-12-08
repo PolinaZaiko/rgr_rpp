@@ -78,21 +78,20 @@
         </ul>
     </main>
     <script>
-        function deleteContact(id) {
-            if (confirm('Вы уверены, что хотите удалить этот контакт?')) {
-                fetch('/contacts/' + id, {
-                    method: 'DELETE'
+        function deleteContact(id) {  // Функция для удаления контакта по ID
+            if (confirm('Вы уверены, что хотите удалить этот контакт?')) {  // Подтверждение удаления
+                fetch('/contacts/' + id, {  // Выполняет запрос на удаление контакта
+                    method: 'DELETE'  // Метод запроса - DELETE
                 })
                 .then(response => {
-                    if (response.ok) {
-                        // Перенаправляем на главную страницу с использованием origin
-                        window.location.href = window.location.origin + '/';
+                    if (response.ok) {  // Проверяет, успешен ли ответ
+                        window.location.href = window.location.origin + '/';  // Перенаправляет на главную страницу
                     } else {
-                        alert('Ошибка при удалении контакта');
+                        alert('Ошибка при удалении контакта');  // Сообщение об ошибке
                     }
                 })
                 .catch(error => {
-                    console.error('Ошибка:', error);
+                    console.error('Ошибка:', error);  // Логирует ошибку в консоль
                 });
             }
         }

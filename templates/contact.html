@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Контакт</title>
+    <title>Контакт</title> # 
     <style>
         body {
             font-family: Arial;
@@ -58,7 +58,7 @@
 </head>
 <body>
     <header>
-        <h1>Контакт</h1>
+        <h1>Контакт</h1> <!-- Заголовок страницы -->
         <nav>
             <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
         </nav>
@@ -72,21 +72,20 @@
         <a href="{{ url_for('index') }}" style="margin-left:20px;">Назад к списку контактов</a>    
     </main>
     <script>
-        function deleteContact(id) {
-            if (confirm('Вы уверены, что хотите удалить этот контакт?')) {
-                fetch('/contacts/' + id, {
-                    method: 'DELETE'
+        function deleteContact(id) {  // Функция для удаления контакта по ID
+            if (confirm('Вы уверены, что хотите удалить этот контакт?')) {  // Подтверждение удаления
+                fetch('/contacts/' + id, {  // Выполняет запрос на удаление контакта
+                    method: 'DELETE'  // Метод запроса - DELETE
                 })
                 .then(response => {
-                    if (response.ok) {
-                        // Перенаправляем на главную страницу
-                        window.location.href = window.location.origin + '/';
+                    if (response.ok) {  // Проверяет, успешен ли ответ
+                        window.location.href = window.location.origin + '/';  // Перенаправляет на главную страницу
                     } else {
-                        alert('Ошибка при удалении контакта');
+                        alert('Ошибка при удалении контакта');  // Сообщение об ошибке
                     }
                 })
                 .catch(error => {
-                    console.error('Ошибка:', error);
+                    console.error('Ошибка:', error);  // Логирует ошибку в консоль
                 });
             }
         }
