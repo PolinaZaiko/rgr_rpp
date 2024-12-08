@@ -12,7 +12,6 @@ contacts = {}
 contact_id_counter = 1
 
 @app.route('/')
-@app.route('/index')
 def index():
     """
     Главная страница, отображающая список всех контактов.
