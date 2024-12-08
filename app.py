@@ -14,12 +14,20 @@ contact_id_counter = 1
 @app.route('/')
 @app.route('/index')
 def index():
+    """
+    Главная страница, отображающая список всех контактов.
+    ---
+    responses:
+      200:
+        description: Успешный ответ с отображением главной страницы.
+    """
     return render_template('index.html', contacts=contacts.values())
+
 
 @app.route('/contacts/new', methods=['GET', 'POST'])
 def create_contact():
     """
-    Создание нового контакта!
+    Создание нового контакта
     ---
     parameters:
       - name: name
@@ -86,8 +94,8 @@ def delete_contact(id):
         description: Идентификатор контакта.
         in: path
     responses:
-      302:
-        description: Успешное удаление контакта, перенаправление на главную страницу.
+      204:
+        description: Успешное удаление контакта.
       404:
         description: Контакт не найден.
     """
