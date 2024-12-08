@@ -35,7 +35,7 @@ jobs:
         
       - name: Install Redocly 
         run: |
-          npm i -g @redocly/cli@latest
+          npm install -g @redocly/cli
         
       - name: Build documentation with Redocly
         run: redocly build-docs docs/openapi.yaml --output docs/index.html
