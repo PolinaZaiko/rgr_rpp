@@ -40,6 +40,8 @@ def create_contact():
         description: Номер телефона.
         in: formData
     responses:
+      200:
+        description: Форма для создания нового контакта.
       302:
         description: Контакт успешно создан, перенаправление на главную страницу.
     """
