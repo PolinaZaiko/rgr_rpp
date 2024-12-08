@@ -68,11 +68,28 @@
         <p><strong>ID:</strong> {{ contact.id }}</p>
         <p><strong>Имя:</strong> {{ contact.name }}</p>
         <p><strong>Телефон:</strong> {{ contact.phone }}</p>
-        <form action="{{ url_for('delete_contact', id=contact.id) }}" method="post" style="display:inline" onsubmit="return confirm('Вы уверены, что хотите удалить этот контакт?');">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit" aria-label="Удалить контакт {{ contact.name }}">Удалить</button>
-        </form>
+        <button onclick="deleteContact({{ contact.id }})">Удалить</button>
         <a href="{{ url_for('index') }}" style="margin-left:20px;">Назад к списку контактов</a>    
     </main>
+    <script>
+        function deleteContact(id) {
+            if (confirm('Вы уверены, что хотите удалить этот контакт?')) {
+                fetch('/contacts/' + id, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Перенаправляем на главную страницу
+                        window.location.href = window.location.origin + '/';
+                    } else {
+                        alert('Ошибка при удалении контакта');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+            }
+        }
+    </script>
 </body>
 </html>

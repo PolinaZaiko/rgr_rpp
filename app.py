@@ -8,6 +8,7 @@ contacts = {}
 contact_id_counter = 1
 
 @app.route('/')
+@app.route('/index')
 def index():
     """Главная страница с списком контактов."""
     return render_template('index.html', contacts=contacts.values())
@@ -69,7 +70,7 @@ def get_contact(id):
 
     return render_template('contact.html', contact=contact)
 
-@app.route('/contacts/<int:id>', methods=['POST'])
+@app.route('/contacts/<int:id>', methods=['DELETE'])
 def delete_contact(id):
     """
     Удаление контакта по его идентификатору.
@@ -86,12 +87,11 @@ def delete_contact(id):
       404:
         description: Контакт не найден.
     """
-    if request.form.get('_method') == 'DELETE':
-      if id not in contacts:
-          return jsonify({"message": "Контакт не найден"}), 404
-
-    del contacts[id]
-    return redirect(url_for('index'))
+    if id in contacts:
+      del contacts[id]
+      return '', 204  # No Content
+    else:
+      return jsonify({"message": "Контакт не найден"}), 404
 
 if __name__ == '__main__':
     app.run()
