@@ -58,25 +58,6 @@
             background-color: #c82333;
         }
     </style>
-</head>
-<body>
-    <header>
-        <h1>Список контактов</h1>
-        <nav>
-            <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
-        </nav>
-    </header>
-    <main>
-        <ul>
-            {% for contact in contacts %}
-                <li>
-                    <span>{{ contact.name }}</span> - <span>{{ contact.phone }}</span>
-                    <a href="{{ url_for('get_contact', id=contact.id) }}">Просмотреть</a>
-                    <button onclick="deleteContact({{ contact.id }})">Удалить</button>
-                </li>
-            {% endfor %}
-        </ul>
-    </main>
     <script>
         function deleteContact(id) {  // Функция для удаления контакта по ID
             if (confirm('Вы уверены, что хотите удалить этот контакт?')) {  // Подтверждение удаления
@@ -96,5 +77,24 @@
             }
         }
     </script>
+</head>
+<body>
+    <header>
+        <h1>Список контактов</h1>
+        <nav>
+            <a href="{{ url_for('create_contact') }}">Добавить новый контакт</a>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            {% for contact in contacts %}
+                <li>
+                    <span>{{ contact.name }}</span> - <span>{{ contact.phone }}</span>
+                    <a href="{{ url_for('get_contact', id=contact.id) }}">Просмотреть</a>
+                    <button onclick="deleteContact({{ contact.id }})">Удалить</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
 </body>
 </html>
